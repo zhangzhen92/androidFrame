@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dialog_view"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@null"
+    android:gravity="center">
+
+    <LinearLayout
+        android:id="@+id/ll_wraper"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@drawable/progress_bg_rec"
+        android:padding="10dp"
+        android:layout_width="130dp"
+        android:layout_height="110dp">
+
+        <ImageView
+            android:id="@+id/img_circle"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/circle_progress"/>
+
+        <TextView
+            android:id="@+id/tv_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="hello"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            />
+    </LinearLayout>
+</LinearLayout>

@@ -10,9 +10,11 @@ import android.app.Application;
 
 
 public class FrameApplication extends Application{
+    public static FrameApplication application;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        application = this;
     }
 }

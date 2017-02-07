@@ -11,6 +11,7 @@ import com.example.lzc.workframedemo.httputils.NetWorks;
 import com.example.lzc.workframedemo.httputils.RxSchedulers;
 import com.example.lzc.workframedemo.utils.LogUtils;
 import com.example.lzc.workframedemo.utils.ToastUtils;
+import com.example.lzc.workframedemo.view.CircleProgressDialog;
 import com.example.lzc.workframedemo.view.dialog.ActionSheetDialog;
 import com.example.lzc.workframedemo.view.dialog.AlertDialog;
 
@@ -25,6 +26,7 @@ import rx.Subscriber;
 public class MainActivity extends BaseActivity {
     private Button buttonAlertDialog;
     private Button buttonSheetDialog;
+    private CircleProgressDialog progressDialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,10 +41,13 @@ public class MainActivity extends BaseActivity {
      * 获取网络数据
      */
     private void loadData() {
-
+        if(progressDialog != null){
+            progressDialog.show();
+        }
         NetWorks.getInstance().getApi().getData().enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                progressDialog.dismiss();
                 try {
                     LogUtils.LogI(response.body().string());
                 } catch (IOException e) {
@@ -52,7 +57,7 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+              progressDialog.dismiss();
             }
         });
 
@@ -80,6 +85,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initView() {
+        progressDialog = new CircleProgressDialog(MainActivity.this);
         buttonAlertDialog = ((Button) findViewById(R.id.button_alertdialog));
         buttonSheetDialog = ((Button) findViewById(R.id.button_sheetdialog));
         buttonAlertDialog.setOnClickListener(new View.OnClickListener() {
